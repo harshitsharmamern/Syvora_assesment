@@ -1,0 +1,79 @@
+.add-item-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #130808;
+    font-weight: bold;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cancel-button {
+    position: absolute;
+    top: 5px;
+    right: 5px; /* Place it in the top-right corner */
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem; /* Adjusted font size */
+    color: #170b0b; /* Ensure color is defined correctly */
+    cursor: pointer;
+    font-weight: bold;
+    text-align: left;
+    transition: color 0.2s;
+}
+
+.cancel-button:hover {
+    color: #333;
+}
+
+.form-group {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input[type="text"] {
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #130808;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus {
+    border-color: #007bff;
+}
+
+.add-button {
+    padding: 10px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.add-button:hover {
+    background-color: #0056b3;
+}
+
+.error-message {
+    color: #dc3545; /* Red color for error */
+    font-size: 0.85rem;
+    margin-top: 4px;
+  }

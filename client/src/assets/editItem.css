@@ -1,0 +1,77 @@
+.edit-form-container {
+    padding: 20px;
+    background-color: #ffffff; /* Pure white background for contrast */
+    border-radius: 8px;
+    color: black;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Increased shadow depth for focus */
+    width: 350px; /* Width for better spacing */
+    margin: 20px auto; /* Top and bottom margin */
+    position: relative; /* Added relative positioning for child elements */
+}
+
+.cancel-button {
+    position: absolute;
+    top: 10px; /* Position 10px from the top */
+    right: 10px; /* Aligned to the right by setting right to 10px */
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px; /* Adjusted padding for smaller button */
+    font-size: 0.9rem; /* Font size */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    width: auto; /* Ensures button doesn’t take full width */
+}
+
+.cancel-button:hover {
+    background-color: #c82333; /* Darkened shade on hover */
+}
+
+.form-group {
+    margin-top: 40px; /* Increased top margin to avoid overlapping with the cancel button */
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #007bff;
+}
+
+.edit-actions {
+    display: flex;
+    justify-content: flex-end; /* Adjusted alignment */
+    margin-top: 20px;
+}
+
+.save-button {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+    background-color: #218838;
+}

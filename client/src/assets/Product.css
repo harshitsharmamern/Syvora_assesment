@@ -1,0 +1,76 @@
+/* Container for the grid layout */
+.grid-container {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    padding: 16px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+/* Styling for each product item */
+.product-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.product-item:hover {
+    transform: scale(1.02);
+}
+
+.product-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.product-description {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 4px;
+}
+
+.product-price {
+    font-size: 1.1rem;
+    color: #228b22;
+    margin-top: 8px;
+}
+
+.product-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.edit-button,
+.remove-button {
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.edit-button {
+    background-color: #4CAF50; /* Green color for edit */
+    text-align: left;
+}
+
+.edit-button:hover {
+    background-color: #45a049;
+}
+
+.remove-button {
+    background-color: #f44336; /* Red color for remove */
+    text-align: right;
+}
+
+.remove-button:hover {
+    background-color: #d32f2f;
+}
