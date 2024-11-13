@@ -10,6 +10,7 @@ const AddItem = () => {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [errors, setErrors] = useState({}); 
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch(); 
@@ -36,10 +37,11 @@ const AddItem = () => {
 
   const handleAddItem = async () => {
     if (!validate()) return; // Stop if validation fails
-
+    
     try {
+      setLoading(true)
       const data = await AddItemRoute({ name, description, price });
-      
+      setLoading(false)
       if (data.status) {
         dispatch(setItem({ name, description, price })); 
         navigate('/');
@@ -54,23 +56,28 @@ const AddItem = () => {
   };
 
   return (
-    <div className="add-item-container">
-      <h2>Add Item</h2>
-      
-      <button className="cancel-button" onClick={() => navigate('/')}>×</button>
+    <>
+    {loading? ( <p>...loding</p> ) : 
 
-      <div className="form-group">
+        (
+          <>
+          <div className="add-item-container">
+          <h2>Add Item</h2>
+          
+          <button className="cancel-button" onClick={() => navigate('/')}>×</button>
+
+          <div className="form-group">
         <label>Name</label>
         <input
-          type="text"
+        type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Enter product name"
           onBlur={validate} // Validate on blur
-        />
+          />
         {errors.name && <div className="error-message">{errors.name}</div>}
       </div>
-
+      
       <div className="form-group">
         <label>Description</label>
         <input
@@ -79,24 +86,28 @@ const AddItem = () => {
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Enter product description"
           onBlur={validate} // Validate on blur
-        />
+          />
         {errors.description && <div className="error-message">{errors.description}</div>} {/* Display error */}
-      </div>
+        </div>
 
       <div className="form-group">
         <label>Price</label>
         <input
-          type="text"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          placeholder="Enter product price"
-          onBlur={validate} // Validate on blur
+        type="text"
+        value={price}
+        onChange={(e) => setPrice(e.target.value)}
+        placeholder="Enter product price"
+        onBlur={validate} // Validate on blur
         />
-        {errors.price && <div className="error-message">{errors.price}</div>} {/* Display error */}
-      </div>
-
-      <button className="add-button" onClick={handleAddItem}>Add</button>
-    </div>
+          {errors.price && <div className="error-message">{errors.price}</div>} {/* Display error */}
+          </div>
+          
+          <button className="add-button" onClick={handleAddItem}>Add</button>
+          </div>
+          </>
+        )
+      }
+      </>
   );
 };
 

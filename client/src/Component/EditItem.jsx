@@ -11,6 +11,7 @@ const EditItem = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [errors, setErrors] = useState({}); 
+  const [loading, setLoading] = useState(false);
 
   const validate = () => {
     const newErrors = {};
@@ -33,41 +34,48 @@ const EditItem = () => {
   };
 
   useEffect(() => {
-
-    const fetchProduct = async () => {
-
-      if (!validate()) return; // Stop if validation fails
-      try {
-        const data = await getItem(); // Fetch all product data
-        if (data && data.AllProduct) {
-          // Find the product with the matching id
-          const product = data.AllProduct.find((item) => item._id === id);
-          
-          // Set state if the product is found
-          if (product) {
-            setName(product.Name);
-            setDescription(product.description);
-            setPrice(product.price);
-          }
-        }
-      } catch (err) {
-        console.log("Error fetching product:", err);
-      }
-    };
     fetchProduct();
   }, [id]);
+  const fetchProduct = async () => {
+    setLoading(true)
+    try {
+      const data = await getItem(); // Fetch all product data
+      if (data && data.AllProduct) {
+        // Find the product with the matching id
+        const product = data.AllProduct.find((item) => item._id === id);
+        
+        setLoading(false)
+        // Set state if the product is found
+        if (product) {
+          setName(product.Name);
+          setDescription(product.description);
+          setPrice(product.price);
+        }
+      }
+    } catch (err) {
+      console.log("Error fetching product:", err);
+      setLoading(false)
+    }
+  };
 
   const handleUpdate = async () => {
+    setLoading(true)
+    if (!validate()) return; // Stop if validation fails
     const updatedProduct = { name, description, price };
     const response = await updateItemRoute(id, updatedProduct);
-
+    setLoading(false)
     if (response) {
       navigate("/"); // Redirect to the list after updating
     }
   };
 
   return (
+    <>
+    {loading? ( <p>...loding</p> ) : 
+    (
+      <>
     <div className="edit-form-container">
+
                 <button onClick={() => navigate("/")} className="cancel-button">x</button>
 
       <h2>Edit Product</h2>
@@ -79,7 +87,7 @@ const EditItem = () => {
           value={name}
           onChange={(e) => setName(e.target.value)}
           onBlur={validate}
-        />
+          />
                 {errors.name && <div className="error-message">{errors.name}</div>}
 
       </div>
@@ -91,7 +99,7 @@ const EditItem = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           onBlur={validate}
-        />
+          />
                 {errors.description && <div className="error-message">{errors.description}</div>} {/* Display error */}
 
       </div>
@@ -103,7 +111,7 @@ const EditItem = () => {
           value={price}
           onChange={(e) => setPrice(e.target.value)}
           onBlur={validate}
-        />
+          />
                 {errors.price && <div className="error-message">{errors.price}</div>} {/* Display error */}
 
       </div>
@@ -112,6 +120,10 @@ const EditItem = () => {
         <button onClick={handleUpdate} className="save-button">Save</button>
       </div>
     </div>
+    </>
+  )
+  }
+          </>
   );
 };
 
