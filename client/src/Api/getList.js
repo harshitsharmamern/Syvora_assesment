@@ -11,7 +11,6 @@ export const getItem = async()=>{
 try{
 
     const validate = await axios.get(fetch_Item)
-    console.log({validate});
     
     return validate.data
 }catch(err){
